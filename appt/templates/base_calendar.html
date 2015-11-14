@@ -12,8 +12,12 @@ Find an Appointment
 		</tr>
 		{% for [appointment] in [open_appointment_list] %}
 			<tr>
-				<td>{{ [appointment.date] | date:"D d M" }}</td>
-				<td>{{ [appointment.time] | date:"P" }}</td>
+				<td>
+					{{ [appointment.date] | date: "D d M" }}
+				</td>
+				<td>
+					{{ [appointment.time] | date: "P" }}
+				</td>
 			</tr>
 		{% endfor %}
 	</table>
