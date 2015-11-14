@@ -48,7 +48,7 @@ def new_appointment(request,pk):
 
 
 	else:
-		my_appointment = AppointmentForm()
+		appointment_form = AppointmentForm()
 
 
 	return render_to_response('appt/newappointment.html',{'my_appointment': my_appointment, 'appointment_form':appointment_form}, context)
