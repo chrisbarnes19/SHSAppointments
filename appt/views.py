@@ -23,7 +23,7 @@ def index(request):
 def monthly_view(request):
 
 	dt = datetime.datetime.now()
-	appointments = get_list_or_404(Appointment, date__range = (dt, dt+datetime.timedelta(months=1)), available = True)
+	appointments = get_list_or_404(Appointment, date__range = (dt, dt+datetime.timedelta(weeks=4)), available = True)
 
 	return render_to_response('appt/base_calendar.html', {'appointments':appointments,},context)
 
