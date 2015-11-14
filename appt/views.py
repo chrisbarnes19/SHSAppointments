@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 from .models import Appointment, UserProfile
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, AppointmentForm
 
 # Create your views here.
 
@@ -28,13 +28,13 @@ def date_view(request,date):
 @login_required
 def new_appointment(request,pk):
 
+	context = RequestContext(request)
+
 	my_appointment = get_object_or_404(Appointment, pk = pk)
-	my_userprofile = get_object_or_404(UserProfile, user = request.user)
+	my_userprofile = get_object_or_404(UserProfile, pk = request.user.pk)
 
 
 	if request.method == 'POST':
-
-
 
 		appointment_form = AppointmentForm(data=request.POST)
 
@@ -50,18 +50,11 @@ def new_appointment(request,pk):
 
 
 	else:
-		symptoms = AppointmentForm()
+		appointment_form = AppointmentForm()
 
 
 	return render_to_response('appt/newappointment.html',{'my_appointment': my_appointment, 'appointment_form':appointment_form}, context)
 
-	
-		
-
-
-
-
-	return HttpResponse('dicks')
 
 def confirmation(request,pk):
 	return HttpResponse('fuck you')

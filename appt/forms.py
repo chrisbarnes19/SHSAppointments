@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, Appointment
 from django.contrib.auth.models import User
 
 class UserForm(forms.ModelForm):
@@ -15,5 +15,6 @@ class UserProfileForm(forms.ModelForm):
 		fields = ('student_id',)
 
 
-class AppointmentForm(forms.ModelForm):
+class AppointmentForm(forms.Form):
 	symptoms = forms.CharField(max_length = 500)
+	
