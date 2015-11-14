@@ -27,7 +27,9 @@ def monthly_view(request, month):
 @login_required
 def date_view(request,day,month,year):
 	
-	appointments = get_list_or_404(Appointment, date__gte=datetime.datetime(year = year, month = month, day = day), date__lte = datetime.datetime(year = year, month = month, day = day + 1), available = True)
+	dt = datetime.datetime(year=year, month=month, day = day)
+	df = dt + datetime.timedelta(days=1)
+	appointments = get_list_or_404(Appointment, date__range=(dt,df), available = True)
 
 	return render_to_response('appt/dateview.html',{'appointments':appointments,},context)
 
