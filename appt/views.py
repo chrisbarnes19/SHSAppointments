@@ -21,6 +21,7 @@ def index(request):
 
 @login_required
 def monthly_view(request):
+	context = RequestContext(request)
 
 	dt = datetime.datetime.now()
 	appointments = get_list_or_404(Appointment, date__range = (dt, dt+datetime.timedelta(weeks=4)), available = True)
