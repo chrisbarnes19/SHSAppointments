@@ -15,7 +15,6 @@ class UserProfileForm(forms.ModelForm):
 		fields = ('student_id',)
 
 
-class AppointmentForm(forms.ModelForm):
+class AppointmentForm(forms.Form):
 	symptoms = forms.CharField(max_length = 500)
-	class Meta:
-		model = Appointment
+	
