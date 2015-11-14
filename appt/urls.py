@@ -13,4 +13,5 @@ urlpatterns = [
 	url(r'^(?P<pk>[0-9]+)/$', views.new_appointment, name='new_appointment'),
 	url(r'^appointments/(?P<month>[0-9]+)/(?P<day>[0-9]+)/(?P<year>[0-9]+)/$', views.date_view, name='date_view'),
 	url(r'^confirmation/(?P<pk>[0-9]+)/$', views.confirmation, name='confirmation'),
+	url(r'^monthly/$' views.monthly_view, name = 'monthly_view'),
 ]
