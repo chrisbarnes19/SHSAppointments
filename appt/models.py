@@ -17,7 +17,7 @@ class UserProfile(models.Model):
 class Appointment(models.Model):
 
 	def __str__(self):
-		return self.user_profile.username
+		return self.doctor
 
 	user_profile = models.ForeignKey(UserProfile, blank=True, null=True)
 	date = models.DateTimeField(auto_now=False,auto_now_add=False,null=True)
