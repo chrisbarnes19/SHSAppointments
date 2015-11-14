@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
 import datetime
+import calendar
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -19,9 +20,12 @@ def index(request):
 	return HttpResponse(output)
 
 @login_required
-def monthly_view(request, month):
-	
-	return HttpResponse('hello')
+def monthly_view(request):
+
+	dt = datetime.datetime.now()
+	appointments = get_list_or_404(Appointment, date__range = (dt, dt+datetime.timedelta(months=1)), available = True)
+
+	return render_to_response('appt/base_calendar.html', {'appointments':appointments,},context)
 
 
 @login_required
