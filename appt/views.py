@@ -28,6 +28,8 @@ def date_view(request,date):
 @login_required
 def new_appointment(request,pk):
 
+	context = RequestContext(request)
+
 	my_appointment = get_object_or_404(Appointment, pk = pk)
 	my_userprofile = get_object_or_404(UserProfile, pk = request.user.pk)
 
