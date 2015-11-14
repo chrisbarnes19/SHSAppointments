@@ -21,7 +21,7 @@ class UserProfile(models.Model):
 	user = models.OneToOneField(User)
 
 	# additional attributes
-	student_id = Integer(null = True)
+	student_id = models.IntegerField(null = True)
 
 	# override __unicode__()
 	def __unicode__(self):
