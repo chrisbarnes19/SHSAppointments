@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -15,3 +16,13 @@ class Appointment(models.Model):
 	symptoms = models.CharField(max_length = 500)
 	available = models.BooleanField()
 
+class UserProfile(models.Model):
+	# links user profile to User model instance
+	user = models.OneToOneField(User)
+
+	# additional attributes
+	student_id = Integer(null = True)
+
+	# override __unicode__()
+	def __unicode__(self):
+		return self.user.username
