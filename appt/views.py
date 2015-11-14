@@ -26,6 +26,7 @@ def monthly_view(request, month):
 
 @login_required
 def date_view(request,day,month,year):
+	context = RequestContext(request)
 	
 	dt = datetime.datetime.strptime(day+" "+month+" "+year,"%d %m %Y")
 	appointments = get_list_or_404(Appointment, date__range = (dt, dt+datetime.timedelta(days=1)), available = True)
