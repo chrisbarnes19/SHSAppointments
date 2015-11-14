@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Appointment
 from .forms import UserForm, UserProfileForm
@@ -86,6 +86,24 @@ def user_login(request):
 
 	else:
 		return render_to_response('appt/login.html', {}, context)
+
+
+
+
+@login_required
+def user_logout(request):
+	logout(request)
+
+	return HttpResponseRedirect('/appt/')
+
+
+
+
+
+
+
+
+
 
 
 
