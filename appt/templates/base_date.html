@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Appointments for {# Today's Date #}
+{% endblock %}
+
+{% block content %}
+	<h1>
+		{{ Appointment.date }}
+	</h1>
+	{% if appointment_today_list %}}
+		(% for appointment in user.appointments % #)
+			<h2>
+				<a href="{{ appointment }}">"appointment.get_time"</a>
+			</h2>
+		(% endfor %)
+	(% else %)
+		<h2>There are no appointments today!</h2>
+	(% endif %)
+{% endblock %}

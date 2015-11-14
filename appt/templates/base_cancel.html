@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+Cancel your appointment
+{% endblock %}
+
+{% block content %}
+(% if appointment_list %)
+	(# % for appointment in user.appointments % #)
+		<h2>
+			<a href="{{ appointment }}">"Appointment for (#GET DATE#)"</a>
+		</h2>
+	(# % endfor % #)
+(% else %)
+	<h2>You have no registered appointments.</h2>
+<% endif %>
+
+{% endblock %}
