@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
 {% block title %}
-Find an appointment
+Find an Appointment
 {% endblock %}
 
 {% block content %}
+	<table>
+		<tr>
+			<td>Appointment Date</td>
+			<td>Appointment Time</td>
+		</tr>
+		{% for [appointment] in [open_appointment_list]}
+			<tr>
+				<td>{{ appointment.date }}</td>
+				<td>{{ appointment.time }}</td>
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}
