@@ -1,0 +1,22 @@
+<html>
+	<body>
+		{{my_appointment.date.month}}/{{my_appointment.date.day}}/{{my_appointment.date.year}}
+
+		{{my_appointment.date.time}}
+
+
+		<form id="appointment_form" method='post' action='/appt/<pk>/' enctype='mutlipart/form-data'>
+
+			{% csrf_token %}
+
+
+			{{appointment_form.as_p}}
+
+			<input type='submit' name='submit' value='Make Appointment' />
+
+		</form>
+
+
+	</body>
+</html>
+

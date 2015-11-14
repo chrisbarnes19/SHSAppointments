@@ -29,15 +29,33 @@ def date_view(request,date):
 def new_appointment(request,pk):
 
 	my_appointment = get_object_or_404(Appointment, pk = pk)
-	
 	my_userprofile = get_object_or_404(UserProfile, user = request.user)
 
-	symptoms = AppointmentForm(data=request.POST)
 
-	if symptoms.is_valid():
-		appointment = my_appointment.save()
-		appointment.symptoms = symptoms
-		appointment.name = my_userprofile.user.name
+	if request.method == 'POST':
+
+
+
+		appointment_form = AppointmentForm(data=request.POST)
+
+		if appointment_form.is_valid():
+
+			my_appointment.user_profile = my_userprofile
+			my_appointment.symptoms = symptoms
+
+			my_appointment.save()
+
+		else:
+			print appointment_form.errors
+
+
+	else:
+		symptoms = AppointmentForm()
+
+
+	return render_to_response('appt/newappointment.html',{'my_appointment': my_appointment, 'appointment_form':appointment_form}, context)
+
+	
 		
 
 
