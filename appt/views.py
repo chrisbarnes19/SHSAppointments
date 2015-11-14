@@ -41,7 +41,7 @@ def new_appointment(request,pk):
 		if appointment_form.is_valid():
 
 			my_appointment.user_profile = my_userprofile
-			my_appointment.symptoms = appointment_form.fields['symptoms'].value
+			my_appointment.symptoms = appointment_form.cleaned_data['symptoms']
 
 			my_appointment.save()
 
