@@ -16,14 +16,18 @@ def index(request):
 
 	return HttpResponse(output)
 
-
+@login_required
 def monthly_view(request, month):
 	
 	return HttpResponse('hello')
 
 
-def date_view(request,date):
-	return HttpResponse('hello')
+@login_required
+def date_view(request,day,month,year):
+
+	appointments = get_list_or_404(Appointment, date.day = day, date.month = month, date.year = year)
+
+	return render_to_response('appt/dateview.html',{'appointments':appointments,},context)
 
 @login_required
 def new_appointment(request,pk):
@@ -55,9 +59,18 @@ def new_appointment(request,pk):
 
 	return render_to_response('appt/newappointment.html',{'my_appointment': my_appointment, 'appointment_form':appointment_form}, context)
 
-
+@login_required
 def confirmation(request,pk):
-	return HttpResponse('fuck you')
+
+	context = RequestContext(request)
+
+	my_appointment = get_object_or_404(Appointment, pk = pk)
+	my_userprofile = get_object_or_404(UserProfile, pk = request.user.pk)
+
+
+	return render_to_response('appt/confirmation.html',{'my_appointment': my_appointment,},context)
+
+
 
 def edit(request,pk):
 	return HttpResponse('fuck you')
