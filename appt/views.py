@@ -2,6 +2,8 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
+import datetime
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
@@ -24,7 +26,7 @@ def monthly_view(request, month):
 
 @login_required
 def date_view(request,day,month,year):
-
+	appointments = Appointment.objects.filter(date >= datetime.datetime(year = year, month = month, day = day), date <= datetime.datetime(year = year, month = month, day = day + 1), available = True)
 	appointments = get_list_or_404(Appointment, date.day = day, date.month = month, date.year = year)
 
 	return render_to_response('appt/dateview.html',{'appointments':appointments,},context)
@@ -46,7 +48,7 @@ def new_appointment(request,pk):
 
 			my_appointment.user_profile = my_userprofile
 			my_appointment.symptoms = appointment_form.cleaned_data['symptoms']
-
+			my_appointment.available = False
 			my_appointment.save()
 
 		else:
