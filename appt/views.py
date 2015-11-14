@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, login_required
 
 from .models import Appointment
 from .forms import UserForm, UserProfileForm
@@ -24,8 +24,24 @@ def monthly_view(request, month):
 def date_view(request,date):
 	return HttpResponse('hello')
 
+@login_required
+def new_appointment(request,pk):
 
-def new_appointment(request,date):
+	my_appointment = get_object_or_404(Appointment, pk = pk)
+	
+	my_userprofile = get_object_or_404(UserProfile, user = request.user)
+
+	symptoms = AppointmentForm(data=request.POST)
+
+	if symptoms.is_valid():
+		appointment = my_appointment.save()
+		appointment.symptoms = symptoms
+		appointment.name = my_userprofile.user.name
+
+
+
+
+
 	return HttpResponse('dicks')
 
 def confirmation(request,pk):
