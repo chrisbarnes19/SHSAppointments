@@ -5,7 +5,7 @@
 		{{my_appointment.date.time}}
 
 
-		<form id="appointment_form" method='post' action="{% url 'appt:new_appointment' %}" enctype='mutlipart/form-data'>
+		<form id="appointment_form" method='post' action="{% url 'appt:new_appointment' my_appointment.pk %}" enctype='mutlipart/form-data'>
 
 			{% csrf_token %}
 
