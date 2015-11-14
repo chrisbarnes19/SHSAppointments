@@ -1,0 +1,1 @@
+web: gunicorn SHSAppointments.wsgi --log-file -
