@@ -13,9 +13,7 @@ def index(request):
 
 
 def monthly_view(request, month):
-	p = Appointment.objects.filter_by(date.month = month)
-
-
+	
 	return HttpResponse('hello')
 
 
