@@ -1,6 +1,8 @@
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+
+from django.contrib.auth import authenticate, login
 
 from .models import Appointment
 from .forms import UserForm, UserProfileForm
@@ -63,6 +65,27 @@ def register(request):
 
 
 
+def user_login(request):
+	context = RequestContext(request)
+
+	if request.method = 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+
+		user = authenticate(username = username, password = password)
+
+		if user:
+			if user.is_active:
+				login(request,user)
+				return HttpResponseRedirect('/appt/')
+			else
+				return HttpResponse("Your account is disabled.")
+		else:
+			print "Invalid login details {0}, {1}".format(username, password)
+			return HttpResponse("Invalid login details supplied.")
+
+	else:
+		return render_to_response('appt/login.html', {}, context)
 
 
 
