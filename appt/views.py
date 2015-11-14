@@ -78,7 +78,7 @@ def user_login(request):
 			if user.is_active:
 				login(request,user)
 				return HttpResponseRedirect('/appt/')
-			else
+			else:
 				return HttpResponse("Your account is disabled.")
 		else:
 			print "Invalid login details {0}, {1}".format(username, password)
