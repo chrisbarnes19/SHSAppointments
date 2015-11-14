@@ -13,10 +13,10 @@ Find an Appointment
 		{% for appointment in appointments %}
 			<tr>
 				<td>
-					{{ apointment.date | date: "D d M" }}
+					{{ apointment.date|date:"D d M" }}
 				</td>
 				<td>
-					{{ appointment.date | date: "P" }}
+					{{ appointment.date|date:"P" }}
 				</td>
 			</tr>
 		{% endfor %}
