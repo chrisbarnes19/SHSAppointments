@@ -29,7 +29,7 @@ def date_view(request,day,month,year):
 	
 	dt = datetime.datetime.strptime(day+" "+month+" "+year,"%d %m %Y")
 	df = dt + datetime.timedelta(days=1)
-	appointments = get_list_or_404(Appointment, date__gte = dt, date__lte = df, available = True)
+	appointments = get_list_or_404(Appointment, date__lte = dt, date__gte = df, available = True)
 
 	return render_to_response('appt/dateview.html',{'appointments':appointments,},context)
 
