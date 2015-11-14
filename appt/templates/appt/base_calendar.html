@@ -15,10 +15,10 @@ Find an Appointment
 				<td>
 					<a href="
 
-					{{ appointment.date | date: "D d M" }}
+					{{ appointment.date|date:"D d M" }}
 				</td>
 				<td>
-					{{ [appointment.time] | date: "P" }}
+					{{ appointment.date|date:"P" }}
 				</td>
 			</tr>
 		{% endfor %}
