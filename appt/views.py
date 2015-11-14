@@ -38,7 +38,7 @@ def new_appointment(request,pk):
 		appointment = my_appointment.save()
 		appointment.symptoms = symptoms
 		appointment.name = my_userprofile.user.name
-
+		
 
 
 
